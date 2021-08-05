@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Express</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+
+  <body>
+    <h1>图片批量下载</h1>
+    <p>上传csv、Excel文件</p>
+    选择文件：
+    <input id="file" type="file" name="file1"/><br />
+    <button id="btn">上传</button>
+    <script>
+      document.querySelector("#btn").addEventListener("click", () => {
+        const dom = document.querySelector("#file");
+        if (!file) {
+          alert("请选择文件");
+        }
+        let formData = new FormData();
+        formData.append("file", dom.files[0]);
+        fetch("http://localhost:3000/sendFile", {
+          method: "POST",
+          body: formData,
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(data => {
+            console.log(data);
+          });
+      });
+    </script>
+  </body>
+</html>
