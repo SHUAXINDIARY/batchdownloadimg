@@ -16,7 +16,9 @@ var storage = multer.diskStorage({
     },
     // 定义存储文件名
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + '.csv')
+        // cb(null, file.fieldname + '-' + Date.now() + '.csv')
+        console.log(file)
+        cb(null, file.originalname + '.csv')
     }
 })
 //注册一个对象，dest里放的是上传的文件存储的位置，可以在当前目录下，建立一个static目录，上传的文件都放在这里
