@@ -33,15 +33,28 @@ const util = {
     },
 };
 
+// Api
+class Api {
+    constructor(baseUrl = "http://localhost:3000") {
+        this.baseUrl = baseUrl;
+    }
+    sendFile(baseurl) {
+        return baseurl || this.baseUrl + "/sendFile";
+    }
+}
+
 const app = {
     setup(props) {
         const state = Vue.reactive({
             file: null,
             data: [],
         });
+        const api = new Api();
+        // 保存文件
         const saveFile = (e) => {
             state.file = e.target.files;
         };
+        // 上传文件
         const send = async () => {
             if (!state.file || state.file.length === 0) {
                 alert("请选择文件");
@@ -49,7 +62,7 @@ const app = {
             }
             let formData = new FormData();
             formData.append("file", state.file[0]);
-            const result = await util.req("http://localhost:3000/sendFile", {
+            const result = await util.req(api.sendFile(), {
                 method: "POST",
                 body: formData,
             });

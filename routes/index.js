@@ -11,6 +11,7 @@ router.get("/", function (req, res, next) {
     });
 });
 
+// csv->格式为json
 const format = async (data) => {
     const ctj = csvtojson();
     let result = await ctj.fromFile(data);
@@ -19,7 +20,6 @@ const format = async (data) => {
 
 router.post("/sendFile", async (req, res, next) => {
     try {
-        // let data = await ctj.fromFile(req.files[0].path);
         let data = await format(req.files[0].path);
         res.send({
             data,
@@ -30,6 +30,5 @@ router.post("/sendFile", async (req, res, next) => {
             message: "错误",
         });
     }
-    // res.send('上传成功')
 });
 module.exports = router;

@@ -1,0 +1,24 @@
+button {
+    border-radius: 5px;
+    padding: 5px 20px;
+    cursor: pointer;
+    border: none;
+    border: 1px solid #d9d9d9;
+    background-color: #fff;
+    transition: border 0.2s;
+}
+button:hover {
+    border: 1px solid #1890ff;
+}
+
+button[type="primary"] {
+    border: 1px solid transparent;
+    background-color: #1890ff;
+    color: #fff;
+    transition: background-color 0.2s;
+}
+button[type="primary"]:hover {
+    border: 1px solid transparent;
+    background-color: #1890ffb8;
+    color: #fff;
+}

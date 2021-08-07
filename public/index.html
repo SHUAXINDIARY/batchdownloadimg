@@ -1,13 +1,14 @@
 <html>
     <head>
         <title>Express</title>
+        <link rel="stylesheet" href="/stylesheets/ui.css">
         <link rel="stylesheet" href="/stylesheets/style.css" />
     </head>
 
     <body>
         <h1>图片批量下载</h1>
         <p>上传csv、Excel文件</p>
-        <div id="app">
+        <div id="app" v-cloak>
             <div>选择文件：</div>
             <br />
             <input id="file" type="file" name="file1" @change="saveFile" />
@@ -26,10 +27,12 @@
                     <th key="index">{{index}}</th>
                     <th key="index">{{item.object}}</th>
                     <th key="index">
-                        <a :href="item.url" target="_blank">查看</a>
+                        <button type="primary">
+                            <a :href="item.url" target="_blank">查看</a>
+                        </button>
                     </th>
                     <th>
-                        <button @click="()=>dow(item)">下载</button>
+                        <button type="primary" @click="() => dow(item)">下载</button>
                     </th>
                 </tr>
             </table>

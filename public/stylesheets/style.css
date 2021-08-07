@@ -2,7 +2,13 @@ body {
     padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+a {
+    text-decoration: none;
+    color: #000;
+}
+[v-cloak] {
+    display: none;
+}
 a {
     color: #00b7ff;
 }
@@ -11,4 +17,10 @@ td,
 th {
     border: 1px solid #000;
     text-align: center;
+}
+th {
+    padding: 10px;
+}
+button a {
+    color: #fff;
 }
