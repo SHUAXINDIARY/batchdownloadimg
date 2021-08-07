@@ -1,72 +1,41 @@
 <html>
-  <head>
-    <title>Express</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
+    <head>
+        <title>Express</title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
 
-  <body>
-    <h1>图片批量下载</h1>
-    <p>上传csv、Excel文件</p>
-    选择文件：
-    <input id="file" type="file" name="file1" /><br />
-    <button id="uplodBtn">上传</button>
-    <script>
-      // 工具库
-      const util = {
-        $(dom) {
-          if (typeof dom !== "string") {
-            throw new Error("dom must be a string");
-          }
-          return document.querySelector(dom);
-        },
-        req(api, opt) {
-          return fetch(api, {
-            ...opt,
-          })
-            .then(res => {
-              return res.json();
-            })
-            .catch(err => {
-              return err;
-            });
-        },
-      };
-
-      // Dom
-      const Dom = {
-        uploadBtn: util.$("#uplodBtn"),
-        getFile: util.$("#file"),
-      };
-      // 状态管理
-      const state = {
-        sourceList: null,
-      };
-      Object.defineProperties(state, {
-        get() {
-          console.log("更新啦");
-        },
-        set(oldVal, newVal) {
-          console.log(oldVal);
-          console.log(newVal);
-        },
-      });
-      // 业务逻辑
-      const feature = {
-        async send() {
-          if (!Dom.getFile.files) {
-            alert("请选择文件");
-          }
-          let formData = new FormData();
-          formData.append("file", Dom.getFile.files[0]);
-          const result = await util.req("http://localhost:3000/sendFile", {
-            method: "POST",
-            body: formData,
-          });
-          state.sourceList = result.data;
-          console.log(result);
-        },
-      };
-      Dom.uploadBtn.addEventListener("click", feature.send);
-    </script>
-  </body>
+    <body>
+        <h1>图片批量下载</h1>
+        <p>上传csv、Excel文件</p>
+        <div id="app">
+            <div>选择文件：</div>
+            <br />
+            <input id="file" type="file" name="file1" @change="saveFile" />
+            <br />
+            <br />
+            <button id="uplodBtn" @click="send">上传</button>
+            <hr />
+            <table id="dataList" v-if="state.data.length > 0">
+                <tr>
+                    <th>序号</th>
+                    <th>名称</th>
+                    <th>url</th>
+                    <th>下载</th>
+                </tr>
+                <tr v-for="(item,index) of state.data">
+                    <th key="index">{{index}}</th>
+                    <th key="index">{{item.object}}</th>
+                    <th key="index">
+                        <a :href="item.url" target="_blank">查看</a>
+                    </th>
+                    <th>
+                        <button @click="()=>dow(item)">下载</button>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="javascripts/index.js"></script>
+    </body>
 </html>
