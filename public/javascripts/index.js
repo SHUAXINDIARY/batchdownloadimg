@@ -38,8 +38,11 @@ class Api {
     constructor(baseUrl = "http://localhost:3000") {
         this.baseUrl = baseUrl;
     }
-    sendFile(baseurl) {
-        return baseurl || this.baseUrl + "/sendFile";
+    sendFile(baseUrl) {
+        return (baseUrl || this.baseUrl) + "/sendFile";
+    }
+    dowAll(baseUrl) {
+        return (baseUrl || this.baseUrl) + "/dowAll";
     }
 }
 
@@ -68,13 +71,26 @@ const app = {
             });
             state.data = result.data;
         };
+        // 下载文件
         const dow = (item) => {
             util.dolFile(item);
+        };
+        // 下载全部
+        const dowAll = async () => {
+            console.log(state.data);
+            const result = await util.req(api.dowAll(), {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ data: state.data }),
+            });
         };
         return {
             send,
             saveFile,
             dow,
+            dowAll,
             state,
         };
     },

@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Express</title>
-        <link rel="stylesheet" href="/stylesheets/ui.css">
+        <link rel="stylesheet" href="/stylesheets/ui.css" />
         <link rel="stylesheet" href="/stylesheets/style.css" />
     </head>
 
@@ -15,6 +15,14 @@
             <br />
             <br />
             <button id="uplodBtn" @click="send">上传</button>
+            &nbsp;&nbsp;&nbsp;
+            <button
+                type="primary"
+                v-if="state.file && state.data.length > 0"
+                @click="dowAll"
+            >
+                批量下载
+            </button>
             <hr />
             <table id="dataList" v-if="state.data.length > 0">
                 <tr>
@@ -32,7 +40,9 @@
                         </button>
                     </th>
                     <th>
-                        <button type="primary" @click="() => dow(item)">下载</button>
+                        <button type="primary" @click="() => dow(item)">
+                            下载
+                        </button>
                     </th>
                 </tr>
             </table>
