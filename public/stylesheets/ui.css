@@ -18,7 +18,33 @@ button[type="primary"] {
     transition: background-color 0.2s;
 }
 button[type="primary"]:hover {
-    border: 1px solid transparent;
+    /* border: 1px solid transparent; */
     background-color: #1890ffb8;
+    color: #fff;
+}
+
+#dataList,
+td,
+th {
+    text-align: left;
+    padding: 12px;
+    border: 1px solid #efeff5;
+    font-size: 12px;
+    text-align: center;
+}
+table {
+    border-collapse: collapse;
+}
+thead {
+    background-color: #efeff585;
+    font-weight: 500;
+}
+tbody {
+    background-color: #fff;
+}
+th {
+    padding: 10px;
+}
+button a {
     color: #fff;
 }

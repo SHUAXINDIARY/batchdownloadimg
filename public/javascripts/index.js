@@ -78,7 +78,7 @@ const app = {
         // 下载全部
         const dowAll = async () => {
             console.log(state.data);
-            const result = await util.req(api.dowAll(), {
+            await util.req(api.dowAll(), {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -95,4 +95,5 @@ const app = {
         };
     },
 };
-Vue.createApp(app).mount("#app");
+const vueApp = Vue.createApp(app);
+vueApp.mount("#app");

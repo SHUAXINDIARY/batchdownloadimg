@@ -2,6 +2,20 @@
 
 - 批量下载图片
 
+# 启动
+
+```shell
+
+git clone xxx
+
+cd batchdownloading
+
+npm i 
+
+# http://localhost:3000/
+
+```
+
 # TODO
   - ~上传文件~
   - ~读取csv文件~
