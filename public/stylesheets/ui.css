@@ -1,3 +1,4 @@
+/* button */
 button {
     border-radius: 5px;
     padding: 5px 20px;
@@ -23,7 +24,8 @@ button[type="primary"]:hover {
     color: #fff;
 }
 
-#dataList,
+/* table */
+table,
 td,
 th {
     text-align: left;
@@ -47,4 +49,19 @@ th {
 }
 button a {
     color: #fff;
+}
+
+/* upload */
+/* 通过伪元素控制shadow-dom */
+input[type="file"]::-webkit-file-upload-button {
+    border-radius: 5px;
+    padding: 5px 20px;
+    cursor: pointer;
+    border: none;
+    border: 1px solid #d9d9d9;
+    background-color: #fff;
+    transition: border 0.2s;
+}
+input[type="file"]::-webkit-file-upload-button:hover {
+    border: 1px solid #1890ff;
 }

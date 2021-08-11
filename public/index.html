@@ -6,16 +6,25 @@
     </head>
 
     <body>
-        <h1>图片批量下载</h1>
-        <p>上传csv、Excel文件</p>
         <div id="app" v-cloak>
-            <div>选择文件：</div>
-            <br />
-            <input id="file" type="file" name="file1" @change="saveFile" />
-            <br />
+            <h1>图片批量下载</h1>
             <br />
             <button id="uplodBtn" @click="send">上传</button>
-            &nbsp;&nbsp;&nbsp;
+            <input
+                ref="upload"
+                id="file"
+                type="file"
+                name="file1"
+                @change="saveFile"
+            />
+            <br />
+            <button
+                type="primary"
+                v-if="state.file && state.data.length > 0"
+                @click="handleClear"
+            >
+                清除
+            </button>
             <button
                 type="primary"
                 v-if="state.file && state.data.length > 0"
@@ -24,7 +33,7 @@
                 批量下载
             </button>
             <hr />
-            <table id="dataList" v-if="state.data.length > 0">
+            <table>
                 <thead>
                     <tr>
                         <th>序号</th>
@@ -34,24 +43,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item,index) of state.data">
-                        <td key="index">{{index}}</td>
-                        <td key="index">{{item.object}}</td>
-                        <td key="index">
-                            <button type="primary">
-                                <a :href="item.url" target="_blank">查看</a>
-                            </button>
-                        </td>
-                        <td>
-                            <button type="primary" @click="() => dow(item)">
-                                下载
-                            </button>
-                        </td>
-                    </tr>
+                    <template v-if="state.data.length > 0">
+                        <tr v-for="(item,index) of state.data">
+                            <td key="index">{{index}}</td>
+                            <td key="index">{{item.object}}</td>
+                            <td key="index">
+                                <button type="primary">
+                                    <a :href="item.url" target="_blank">查看</a>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="primary" @click="() => dow(item)">
+                                    下载
+                                </button>
+                            </td>
+                        </tr>
+                    </template>
+                    <template v-else>
+                        <tr>
+                            <td colspan="4">暂无数据</td>
+                        </tr>
+                    </template>
                 </tbody>
             </table>
         </div>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
         <script src="https://unpkg.com/vue@next"></script>
         <script src="javascripts/index.js"></script>
     </body>

@@ -12,15 +12,7 @@ a {
 a {
     color: #00b7ff;
 }
-/* #dataList,
-td,
-th {
-    border: 1px solid #000;
-    text-align: center;
+button {
+    margin-right: 20px;
+    margin-bottom: 10px;
 }
-th {
-    padding: 10px;
-}
-button a {
-    color: #fff;
-} */
