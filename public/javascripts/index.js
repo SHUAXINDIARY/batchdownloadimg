@@ -6,16 +6,15 @@ const util = {
      * @param {Object} opt 请求配置
      * @returns {Promise}
      */
-    req(api, opt) {
-        return fetch(api, {
-            ...opt,
-        })
-            .then((res) => {
-                return res.json();
-            })
-            .catch((err) => {
-                return err;
+    async req(api, opt) {
+        try {
+            const result = await fetch(api, {
+                ...opt,
             });
+            return result.json();
+        } catch (error) {
+            alert("服务端错误");
+        }
     },
     async dolFile(item) {
         let data = await fetch(item.url).then((res) => {
